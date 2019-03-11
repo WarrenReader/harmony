@@ -24,6 +24,11 @@ module.exports = {
         test: /\.(png|jpg|gif)$/,
         exclude: /node_modules/,
         use: ['file-loader']
+      },
+      {
+        test: /\.svg$/,
+        exclude: /node_modules/,
+        loader: ['svg-inline-loader']
       }
     ]
   },

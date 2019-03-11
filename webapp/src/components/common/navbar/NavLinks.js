@@ -1,6 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { displayModal } from '../../../actions/modals';
+import { LOGIN_MODAL } from '../modals/modals/Login';
+import { SIGNUP_MODAL } from '../modals/modals/SignUp';
 
 const Container = styled.div``;
 
@@ -31,13 +36,24 @@ const NavLinkCallOut = styled(NavLink)`
   }
 `;
 
-const NavLinks = () => {
+const NavLinks = ({ displayModal }) => {
   return (
     <Container>
-      <NavLink to="#">Log In</NavLink>
-      <NavLinkCallOut to="#">Sign Up</NavLinkCallOut>
+      <NavLink to="#" onClick={() => displayModal(LOGIN_MODAL)}>
+        Log In
+      </NavLink>
+      <NavLinkCallOut to="#" onClick={() => displayModal(SIGNUP_MODAL)}>
+        Sign Up
+      </NavLinkCallOut>
     </Container>
   );
 };
 
-export default NavLinks;
+NavLinks.propTypes = {
+  displayModal: propTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { displayModal }
+)(NavLinks);
