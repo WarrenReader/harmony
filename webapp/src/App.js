@@ -1,29 +1,21 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      health: ''
-    };
-    this.fetchTest = this.fetchTest.bind(this);
-  }
+import NavBar from './components/common/navbar/NavBar';
 
-  fetchTest() {
-    fetch('/api/users/health')
-      .then(response => response.json())
-      .then(data => this.setState({ health: data.status }));
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <h1>Harmony</h1>
-        <button onClick={this.fetchTest}>Fetch</button>
-        <div>{this.state.health}</div>
-      </React.Fragment>
-    );
-  }
-}
+const App = () => {
+  return (
+    <Router>
+      <div>
+        <NavBar />
+        <Switch>
+          <Route exact path="/" component={() => <h1>Home</h1>} />
+          <Route exact path="/dashboard" component={() => <h1>Dashboard</h1>} />
+          <Route exact path="/settings" component={() => <h1>Settings</h1>} />
+        </Switch>
+      </div>
+    </Router>
+  );
+};
 
 export default App;

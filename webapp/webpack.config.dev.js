@@ -5,7 +5,8 @@ module.exports = merge(baseConfig, {
   mode: 'development',
   devServer: {
     port: 3025,
-    proxy: { '/api': { target: 'http://localhost:4025', secure: false } }
+    proxy: { '/api': { target: 'http://localhost:4025', secure: false } },
+    historyApiFallback: true
   },
   devtool: 'source-map'
 });
