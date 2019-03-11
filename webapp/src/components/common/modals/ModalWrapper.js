@@ -27,7 +27,7 @@ const Close = styled.img`
 
 const Container = styled.div`
   display: flex;
-  height: 100%;
+  height: auto;
   justify-content: center;
   position: fixed;
   width: 100%;
@@ -47,17 +47,12 @@ const ModalBox = styled.div`
 `;
 
 const ModalBody = styled.div`
-  max-height: 350px;
-  width: 100%;
-`;
-
-const ModalFooter = styled.div`
-  height: 75px;
   width: 100%;
 `;
 
 const Title = styled.div`
   font-size: 22px;
+  margin-bottom: 25px;
   text-align: center;
 `;
 
@@ -82,15 +77,16 @@ class ModalWrapper extends React.Component {
   }
 
   render() {
-    const { children, displayModal, title } = this.props;
+    const { children, displayModal, showClose = true, title } = this.props;
     return (
       <Container>
         <Background />
         <ModalBox ref={node => (this.modal = node)}>
-          <Close src={close} onClick={() => displayModal(null)} />
+          {showClose && (
+            <Close src={close} onClick={() => displayModal(null)} />
+          )}
           <Title>{title}</Title>
           <ModalBody>{children}</ModalBody>
-          <ModalFooter>Footer</ModalFooter>
         </ModalBox>
       </Container>
     );
@@ -100,6 +96,7 @@ class ModalWrapper extends React.Component {
 ModalWrapper.propTypes = {
   children: propTypes.object.isRequired,
   displayModal: propTypes.func.isRequired,
+  showClose: propTypes.bool,
   title: propTypes.string.isRequired
 };
 
