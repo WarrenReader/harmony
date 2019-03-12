@@ -3,13 +3,13 @@ import propTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Button = styled.button`
-  background: #406ce7;
+  background: ${props => (props.disabled ? '#D3D3D3' : '#406ce7')};
   border: none;
   border-radius: 4px;
   box-shadow: none;
-  cursor: pointer;
-  font-size: 18px;
   color: white;
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  font-size: 18px;
   padding: 8px 0px;
   width: 100%;
 
@@ -22,10 +22,13 @@ const Button = styled.button`
   }
 `;
 
-const PrimaryButton = ({ text }) => <Button>{text}</Button>;
+const PrimaryButton = ({ text, disabled = false }) => (
+  <Button disabled={disabled}>{text}</Button>
+);
 
 PrimaryButton.propTypes = {
-  text: propTypes.string.isRequired
+  text: propTypes.string.isRequired,
+  disabled: propTypes.bool
 };
 
 export default PrimaryButton;

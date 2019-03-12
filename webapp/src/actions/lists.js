@@ -1,7 +1,9 @@
 import listsData from '../data/lists.json';
+import uuid from 'uuid/v4';
 
 export const RETREIVING_LISTS = 'RETREIVING_LISTS';
 export const GET_LISTS_SUCCESSFUL = 'GET_LISTS_SUCCESSFUL';
+export const NEW_LIST = 'NEW_LIST';
 export const TOGGLE_LIST = 'TOGGLE_LIST';
 
 export const retreivingLists = () => ({
@@ -21,6 +23,15 @@ export const getLists = () => {
       2000
     );
   };
+};
+
+export const addList = listName => {
+  const listObj = {
+    name: listName,
+    id: uuid()
+  };
+
+  return { type: NEW_LIST, payload: listObj };
 };
 
 export const toggleList = listId => ({

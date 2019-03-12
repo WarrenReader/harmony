@@ -1,6 +1,7 @@
 import {
   RETREIVING_LISTS,
   GET_LISTS_SUCCESSFUL,
+  NEW_LIST,
   TOGGLE_LIST
 } from '../actions/lists';
 
@@ -23,6 +24,9 @@ const lists = (state = initialState, action) => {
         fetching: false,
         fetchError: false
       };
+
+    case NEW_LIST:
+      return { ...state, lists: [...state.lists, action.payload] };
 
     case TOGGLE_LIST:
       return { ...state, toggledListId: action.payload };

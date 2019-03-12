@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ToDoListContainer from '../components/dashboard/sidebar/ToDoListContainer';
+import ToDoContainer from '../components/dashboard/main/ToDoContainer';
 
 const Container = styled.div`
   display: flex;
@@ -12,12 +13,13 @@ const Container = styled.div`
 const SideBar = styled.div`
   background: #dcdcdc;
   box-sizing: border-box;
-  padding: 25px;
-  width: 350px;
+  padding: 35px;
+  min-width: 300px;
 `;
 
-const Tasks = styled.div`
-  padding: 25px;
+const Main = styled.div`
+  padding: 35px;
+  width: 100%;
 `;
 
 const Dashboard = () => {
@@ -26,7 +28,9 @@ const Dashboard = () => {
       <SideBar>
         <ToDoListContainer />
       </SideBar>
-      <Tasks>Tasks</Tasks>
+      <Main>
+        <ToDoContainer />
+      </Main>
     </Container>
   );
 };

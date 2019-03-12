@@ -12,6 +12,8 @@ const Container = styled.div`
   align-content: center;
   background: ${props => (props.toggled ? '#ff3232' : 'inherit')};
   border-radius: 3px;
+  box-shadow: ${props =>
+    props.toggled ? '0px 0px 0px 1px rgba(0,0,0,0.1)' : 'none'};
   box-sizing: border-box;
   color: ${props => (props.toggled ? '#ffffff' : '#000000')};
   cursor: pointer;
