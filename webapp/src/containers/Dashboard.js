@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import ToDoListContainer from '../components/dashboard/sidebar/ToDoListContainer';
+
 const Container = styled.div`
   display: flex;
   height: calc(100% - 77px);
@@ -9,19 +11,21 @@ const Container = styled.div`
 
 const SideBar = styled.div`
   background: #dcdcdc;
-  flex-grow: 1;
-  padding: 20px;
+  box-sizing: border-box;
+  padding: 25px;
+  width: 350px;
 `;
 
 const Tasks = styled.div`
-  flex-grow: 3;
-  padding: 20px;
+  padding: 25px;
 `;
 
 const Dashboard = () => {
   return (
     <Container>
-      <SideBar>Lists</SideBar>
+      <SideBar>
+        <ToDoListContainer />
+      </SideBar>
       <Tasks>Tasks</Tasks>
     </Container>
   );

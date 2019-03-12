@@ -27,11 +27,6 @@ const Label = styled.span`
   margin-bottom: 12px;
 `;
 
-// const Loading = styled.img`
-//   height: 40px;
-//   width: 40px;
-// `;
-
 const LoadingContainer = styled.div`
   display: flex;
   justify-content: center;

@@ -1,0 +1,8 @@
+{
+  "lists": [
+    { "name": "Home Improvement", "id": 1 },
+    { "name": "School", "id": 2 },
+    { "name": "Work", "id": 3 },
+    { "name": "Shopping", "id": 4 }
+  ]
+}
