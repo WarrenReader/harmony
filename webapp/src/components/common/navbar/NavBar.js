@@ -1,5 +1,7 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 
 import Logo from './Logo';
 import NavLinks from './NavLinks';
@@ -13,13 +15,17 @@ const StyledNavBar = styled.nav`
   padding: 0px 40px;
 `;
 
-const NavBar = () => {
+const NavBar = ({ location: { pathname } }) => {
   return (
     <StyledNavBar>
       <Logo />
-      <NavLinks />
+      <NavLinks location={pathname} />
     </StyledNavBar>
   );
 };
 
-export default NavBar;
+NavBar.propTypes = {
+  location: propTypes.object.isRequired
+};
+
+export default withRouter(NavBar);

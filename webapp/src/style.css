@@ -132,3 +132,13 @@ table {
 a {
   text-decoration: none;
 }
+html,
+body {
+  height: 100%;
+  min-height: 100%;
+}
+
+#app {
+  height: 100%;
+  min-height: 100%;
+}

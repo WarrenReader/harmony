@@ -36,21 +36,27 @@ const NavLinkCallOut = styled(NavLink)`
   }
 `;
 
-const NavLinks = ({ displayModal }) => {
+const NavLinks = ({ displayModal, location }) => {
   return (
     <Container>
-      <NavLink to="#" onClick={() => displayModal(LOGIN_MODAL)}>
-        Log In
-      </NavLink>
-      <NavLinkCallOut to="#" onClick={() => displayModal(SIGNUP_MODAL)}>
-        Sign Up
-      </NavLinkCallOut>
+      {location != '/dashboard' && (
+        <NavLink to="#" onClick={() => displayModal(LOGIN_MODAL)}>
+          Log In
+        </NavLink>
+      )}
+      {location != '/dashboard' && (
+        <NavLinkCallOut to="#" onClick={() => displayModal(SIGNUP_MODAL)}>
+          Sign Up
+        </NavLinkCallOut>
+      )}
+      {location === '/dashboard' && <NavLink to="/">Logout</NavLink>}
     </Container>
   );
 };
 
 NavLinks.propTypes = {
-  displayModal: propTypes.func.isRequired
+  displayModal: propTypes.func.isRequired,
+  location: propTypes.string.isRequired
 };
 
 export default connect(
