@@ -9,6 +9,14 @@ import { createTask } from '../../../../actions/toDos';
 
 export const NEW_TODO_MODAL = 'NEW_TODO_MODAL';
 
+const ErrorMsg = styled.span`
+  color: #ff0000;
+  display: block;
+  font-size: 14px;
+  margin: -12px 0 10px 0;
+  padding-left: 3px;
+`;
+
 const Form = styled.form``;
 
 const InputRow = styled.div`
@@ -17,7 +25,18 @@ const InputRow = styled.div`
 
 class NewToDo extends React.Component {
   state = {
-    taskDescription: ''
+    taskDescription: '',
+    error: null
+  };
+
+  handleValidation = value => {
+    if (value.length === 0) {
+      this.setState({ error: 'You must enter a description' });
+    } else if (value.length > 75) {
+      this.setState({ error: '75 character maximum' });
+    } else {
+      this.setState({ error: null });
+    }
   };
 
   handleSubmit = e => {
@@ -27,20 +46,29 @@ class NewToDo extends React.Component {
     this.props.createTask(taskDescription, toggledListId);
   };
 
+  handleUpdateInput = value => {
+    this.handleValidation(value);
+    this.setState({ taskDescription: value });
+  };
+
   render() {
-    const { taskDescription } = this.state;
+    const { taskDescription, error } = this.state;
 
     return (
-      <ModalWrapper title="Add New To-Do">
+      <ModalWrapper title="Create To-Do">
         <Form onSubmit={this.handleSubmit}>
           <InputRow>
             <Input
               type="text"
               value={taskDescription}
-              onChange={e => this.setState({ taskDescription: e.target.value })}
+              onChange={e => this.handleUpdateInput(e.target.value)}
             />
           </InputRow>
-          <Button text="Create" />
+          {error && <ErrorMsg>{error}</ErrorMsg>}
+          <Button
+            text="Create"
+            disabled={Boolean(error) || taskDescription.length === 0}
+          />
         </Form>
       </ModalWrapper>
     );
@@ -49,7 +77,7 @@ class NewToDo extends React.Component {
 
 NewToDo.propTypes = {
   createTask: propTypes.func.isRequired,
-  toggledListId: propTypes.number
+  toggledListId: propTypes.oneOfType([propTypes.number, propTypes.string])
 };
 
 const mapStateToProps = state => ({ toggledListId: state.lists.toggledListId });

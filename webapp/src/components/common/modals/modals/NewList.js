@@ -24,25 +24,15 @@ const InputRow = styled.div`
   margin-bottom: 15px;
 `;
 
-const SuccessMsg = styled.span`
-  color: #4bb543;
-  display: block;
-  font-size: 20px;
-  text-align: center;
-  width: 100%;
-`;
-
 class NewList extends React.Component {
   state = {
     listName: '',
-    error: null,
-    newListCreated: false
+    error: null
   };
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.addList(this.state.listName);
-    this.setState({ newListCreated: true });
   };
 
   handleValidation = value => {
@@ -66,29 +56,25 @@ class NewList extends React.Component {
   };
 
   render() {
-    const { listName, error, newListCreated } = this.state;
+    const { listName, error } = this.state;
 
     return (
       <ModalWrapper title="Create New List">
-        {newListCreated ? (
-          <SuccessMsg>New List Added!</SuccessMsg>
-        ) : (
-          <Form onSubmit={this.handleSubmit}>
-            <InputRow>
-              <Input
-                type="text"
-                placeholder="List Name"
-                value={listName}
-                onChange={e => this.handleUpdateInput(e.target.value)}
-              />
-            </InputRow>
-            {error && <ErrorMsg>{error}</ErrorMsg>}
-            <Button
-              disabled={Boolean(error) || listName.length === 0}
-              text="Create"
+        <Form onSubmit={this.handleSubmit}>
+          <InputRow>
+            <Input
+              type="text"
+              placeholder="List Name"
+              value={listName}
+              onChange={e => this.handleUpdateInput(e.target.value)}
             />
-          </Form>
-        )}
+          </InputRow>
+          {error && <ErrorMsg>{error}</ErrorMsg>}
+          <Button
+            disabled={Boolean(error) || listName.length === 0}
+            text="Create"
+          />
+        </Form>
       </ModalWrapper>
     );
   }

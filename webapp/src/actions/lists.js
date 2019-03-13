@@ -1,5 +1,6 @@
 import listsData from '../data/lists.json';
 import uuid from 'uuid/v4';
+import { displayModal } from './modals';
 
 export const RETREIVING_LISTS = 'RETREIVING_LISTS';
 export const GET_LISTS_SUCCESSFUL = 'GET_LISTS_SUCCESSFUL';
@@ -26,12 +27,15 @@ export const getLists = () => {
 };
 
 export const addList = listName => {
-  const listObj = {
-    name: listName,
-    id: uuid()
+  return dispatch => {
+    const listObj = {
+      name: listName,
+      id: uuid()
+    };
+    dispatch({ type: NEW_LIST, payload: listObj });
+    dispatch(displayModal(null));
+    dispatch(toggleList(listObj.id));
   };
-
-  return { type: NEW_LIST, payload: listObj };
 };
 
 export const toggleList = listId => {

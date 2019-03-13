@@ -36,13 +36,14 @@ const Container = styled.div`
   width: 700px;
 `;
 
-const PleaseSelect = styled.div`
+const HelperText = styled.div`
   color: #000000;
   display: flex;
   font-size: 54px;
   justify-content: center;
   margin-top: 75px;
   opacity: 0.2;
+  user-select: none;
 `;
 
 const H1 = styled.h1`
@@ -83,7 +84,9 @@ const ToDoContainer = props => {
       </Header>
 
       {toggledListId === null ? (
-        <PleaseSelect>Select A To-Do List</PleaseSelect>
+        <HelperText>Select A To-Do List</HelperText>
+      ) : toggledListId && toDoList.length === 0 ? (
+        <HelperText>No Tasks</HelperText>
       ) : null}
 
       {toDoList.length > 0
@@ -102,7 +105,7 @@ const ToDoContainer = props => {
 
 ToDoContainer.propTypes = {
   toDos: propTypes.array.isRequired,
-  toggledListId: propTypes.number,
+  toggledListId: propTypes.oneOfType([propTypes.number, propTypes.string]),
   displayModal: propTypes.func.isRequired
 };
 

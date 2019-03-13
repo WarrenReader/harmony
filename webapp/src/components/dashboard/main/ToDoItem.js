@@ -67,7 +67,7 @@ const Description = styled.input.attrs({ type: 'text' })`
   height: 25px;
   margin-left: 15px;
   padding: 5px;
-  width: 500px;
+  width: 550px;
 `;
 
 const ToDoItem = ({
@@ -87,6 +87,7 @@ const ToDoItem = ({
         value={description}
         onChange={e => updateStatusDescription(e.target.value, id)}
         disabled={completed}
+        maxLength="75"
       />
       <Close onClick={() => deleteTask(id)} />
     </Container>

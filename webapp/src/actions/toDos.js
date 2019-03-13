@@ -1,5 +1,6 @@
 import toDos from '../data/toDos.json';
 import uuid from 'uuid/v4';
+import { displayModal } from './modals';
 
 export const GET_TODOS_SUCCESSFUL = 'GET_TODOS_SUCCESSFUL';
 export const TOGGLE_TODO_STATUS = 'TOGGLE_TODO_STATUS';
@@ -84,9 +85,7 @@ export const createTask = (description, toDoListId) => {
 
     const updatedList = [...listOfToDos, newToDo];
 
-    dispatch({
-      type: CREATE_TASK,
-      payload: updatedList
-    });
+    dispatch({ type: CREATE_TASK, payload: updatedList });
+    dispatch(displayModal(null));
   };
 };
