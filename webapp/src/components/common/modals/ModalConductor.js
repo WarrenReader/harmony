@@ -5,6 +5,7 @@ import propTypes from 'prop-types';
 import Login, { LOGIN_MODAL } from './modals/Login';
 import SignUp, { SIGNUP_MODAL } from './modals/SignUp';
 import NewList, { NEW_LIST_MODAL } from './modals/NewList';
+import NewToDo, { NEW_TODO_MODAL } from './modals/NewToDo';
 
 const ModalWrapper = ({ modals: { displayModal } }) => {
   switch (displayModal) {
@@ -14,6 +15,8 @@ const ModalWrapper = ({ modals: { displayModal } }) => {
       return <SignUp />;
     case NEW_LIST_MODAL:
       return <NewList />;
+    case NEW_TODO_MODAL:
+      return <NewToDo />;
     default:
       return null;
   }

@@ -1,7 +1,9 @@
 import {
   GET_TODOS_SUCCESSFUL,
   TOGGLE_TODO_STATUS,
-  UPDATE_TODO_DESCRIPTION
+  UPDATE_TODO_DESCRIPTION,
+  DELETE_TASK,
+  CREATE_TASK
 } from '../actions/toDos';
 
 const initialState = {
@@ -15,6 +17,10 @@ const toDos = (state = initialState, action) => {
     case TOGGLE_TODO_STATUS:
       return { ...state, listOfToDos: action.payload };
     case UPDATE_TODO_DESCRIPTION:
+      return { ...state, listOfToDos: action.payload };
+    case DELETE_TASK:
+      return { ...state, listOfToDos: action.payload };
+    case CREATE_TASK:
       return { ...state, listOfToDos: action.payload };
     default:
       return state;

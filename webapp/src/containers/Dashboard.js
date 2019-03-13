@@ -21,7 +21,6 @@ const SideBar = styled.div`
 `;
 
 const Main = styled.div`
-  max-width: 700px;
   padding: 35px;
   width: 100%;
 `;

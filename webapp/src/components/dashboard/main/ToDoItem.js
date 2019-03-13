@@ -4,7 +4,8 @@ import propTypes from 'prop-types';
 import styled from 'styled-components';
 import {
   toggleToDoStatus,
-  updateStatusDescription
+  updateStatusDescription,
+  deleteTask
 } from '../../../actions/toDos';
 import Checkmark from '../../../assets/Checkmark';
 
@@ -14,6 +15,7 @@ const Container = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   display: flex;
   height: 50px;
+  position: relative;
   width: 100%;
 `;
 
@@ -21,6 +23,40 @@ const CheckMarkContainer = styled.div`
   cursor: pointer;
   margin-left: 15px;
   width: 30px;
+`;
+
+const Close = styled.span`
+  cursor: pointer;
+  height: 26px;
+  position: absolute;
+  right: 15px;
+  width: 26px;
+
+  &:after {
+    content: '';
+    height: 26px;
+    border-left: 2px solid #383838;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 12px;
+  }
+
+  &:hover:after {
+    border-left: 2px solid #ff0000;
+  }
+
+  &:before {
+    content: '';
+    height: 26px;
+    border-left: 2px solid #383838;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 12px;
+  }
+
+  &:hover:before {
+    border-left: 2px solid #ff0000;
+  }
 `;
 
 const Description = styled.input.attrs({ type: 'text' })`
@@ -31,7 +67,7 @@ const Description = styled.input.attrs({ type: 'text' })`
   height: 25px;
   margin-left: 15px;
   padding: 5px;
-  width: 100%;
+  width: 500px;
 `;
 
 const ToDoItem = ({
@@ -39,7 +75,8 @@ const ToDoItem = ({
   description,
   completed,
   toggleToDoStatus,
-  updateStatusDescription
+  updateStatusDescription,
+  deleteTask
 }) => {
   return (
     <Container completed={completed}>
@@ -51,19 +88,21 @@ const ToDoItem = ({
         onChange={e => updateStatusDescription(e.target.value, id)}
         disabled={completed}
       />
+      <Close onClick={() => deleteTask(id)} />
     </Container>
   );
 };
 
 ToDoItem.propTypes = {
-  id: propTypes.number.isRequired,
+  id: propTypes.oneOfType([propTypes.number, propTypes.string]),
   description: propTypes.string.isRequired,
   completed: propTypes.bool.isRequired,
   toggleToDoStatus: propTypes.func.isRequired,
-  updateStatusDescription: propTypes.func.isRequired
+  updateStatusDescription: propTypes.func.isRequired,
+  deleteTask: propTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { toggleToDoStatus, updateStatusDescription }
+  { toggleToDoStatus, updateStatusDescription, deleteTask }
 )(ToDoItem);
