@@ -96,7 +96,7 @@ class NewList extends React.Component {
 
 NewList.propTypes = {
   addList: propTypes.func.isRequired,
-  lists: propTypes.object.isRequired
+  lists: propTypes.array.isRequired
 };
 
 const mapStateToProps = ({ lists: { lists } }) => {

@@ -1,0 +1,34 @@
+{
+  "toDos": [
+    {
+      "description": "Paint Living Room",
+      "taskId": 1,
+      "toDoListId": 1,
+      "completed": false
+    },
+    {
+      "description": "Resurface Flooring",
+      "taskId": 2,
+      "toDoListId": 1,
+      "completed": true
+    },
+    {
+      "description": "Fix Drywall",
+      "taskId": 3,
+      "toDoListId": 1,
+      "completed": false
+    },
+    {
+      "description": "Do Homework",
+      "taskId": 4,
+      "toDoListId": 2,
+      "completed": false
+    },
+    {
+      "description": "Study For Test",
+      "taskId": 5,
+      "toDoListId": 2,
+      "completed": false
+    }
+  ]
+}

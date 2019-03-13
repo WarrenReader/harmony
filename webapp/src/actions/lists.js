@@ -34,7 +34,8 @@ export const addList = listName => {
   return { type: NEW_LIST, payload: listObj };
 };
 
-export const toggleList = listId => ({
-  type: TOGGLE_LIST,
-  payload: listId
-});
+export const toggleList = listId => {
+  return dispatch => {
+    dispatch({ type: TOGGLE_LIST, payload: listId });
+  };
+};

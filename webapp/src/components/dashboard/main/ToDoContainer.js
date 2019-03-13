@@ -1,5 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 import styled from 'styled-components';
+import filterForToDos from '../../../utils/filterForToDos';
+import ToDoItem from './ToDoItem';
 
 const Container = styled.div`
   display: flex;
@@ -25,13 +29,45 @@ const H1 = styled.h1`
   width: 100%;
 `;
 
-const ToDoContainer = () => {
+const ToDoContainer = props => {
+  const { toDos, toggledListId } = props;
+  const toDoList = filterForToDos(toDos, toggledListId);
+
   return (
     <Container>
       <H1>To-Dos</H1>
-      <PleaseSelect>&larr; Select A To-Do List</PleaseSelect>
+
+      {toggledListId === null ? (
+        <PleaseSelect>Select A To-Do List</PleaseSelect>
+      ) : null}
+
+      {toDoList.length > 0
+        ? toDoList.map(toDo => (
+            <ToDoItem
+              id={toDo.taskId}
+              key={toDo.taskId}
+              description={toDo.description}
+              completed={toDo.completed}
+            />
+          ))
+        : null}
     </Container>
   );
 };
 
-export default ToDoContainer;
+ToDoContainer.propTypes = {
+  toDos: propTypes.array.isRequired,
+  toggledListId: propTypes.oneOfType([propTypes.number, propTypes.null])
+};
+
+const mapStateToProps = state => {
+  return {
+    toggledListId: state.lists.toggledListId,
+    toDos: state.toDos.listOfToDos
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(ToDoContainer);
