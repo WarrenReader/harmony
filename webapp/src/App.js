@@ -7,6 +7,7 @@ import store from './store';
 import ModalConductor from './components/common/modals/ModalConductor';
 import NavBar from './components/common/navbar/NavBar';
 import Dashboard from './containers/Dashboard';
+import Home from './containers/Home';
 
 const AppContainer = styled.div`
   height: 100%;
@@ -21,7 +22,7 @@ const App = () => {
           <ModalConductor />
           <NavBar />
           <Switch>
-            <Route exact path="/" component={() => <h1>Home</h1>} />
+            <Route exact path="/" component={() => <Home />} />
             <Route exact path="/dashboard" component={() => <Dashboard />} />
             <Route exact path="/settings" component={() => <h1>Settings</h1>} />
           </Switch>

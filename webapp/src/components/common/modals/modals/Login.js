@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import styled from 'styled-components';
@@ -35,72 +35,63 @@ const LoadingContainer = styled.div`
 
 export const LOGIN_MODAL = 'LOGIN_MODAL';
 
-class Login extends React.Component {
-  state = {
-    title: 'Log In',
-    email: '',
-    password: '',
-    loggingIn: false,
-    showClose: true
-  };
+const Login = props => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loggingIn, setLoggingIn] = useState(false);
+  const [showClose, setShowClose] = useState();
 
-  onSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault();
-    this.setState({
-      loggingIn: true,
-      title: 'Logging In...',
-      showClose: false
-    });
+    setLoggingIn(true);
+    setShowClose(false);
+
     setTimeout(() => {
-      this.props.history.push('/dashboard');
-      this.props.displayModal(null);
+      props.history.push('/dashboard');
+      props.displayModal(null);
     }, 2000);
   };
 
-  render() {
-    const { email, loggingIn, password, showClose, title } = this.state;
-
-    return (
-      <ModalWrapper
-        title={title}
-        primaryButtonText="Log In"
-        showClose={showClose}
-      >
-        {loggingIn ? (
-          <LoadingContainer>
-            <Loading />
-          </LoadingContainer>
-        ) : (
-          <Form onSubmit={this.onSubmit}>
-            <InputRow>
-              <Label htmlFor="email">Email Address</Label>
-              <Input
-                type="text"
-                id="email"
-                placeholder="name@email.com"
-                value={email}
-                onChange={e => this.setState({ email: e.target.value })}
-              />
-            </InputRow>
-            <InputRow>
-              <Label htmlFor="password">Password</Label>
-              <Input
-                type="password"
-                id="password"
-                placeholder="password"
-                value={password}
-                onChange={e => this.setState({ password: e.target.value })}
-              />
-            </InputRow>
-            <ButtonContainer>
-              <PrimaryButton text="Log In" />
-            </ButtonContainer>
-          </Form>
-        )}
-      </ModalWrapper>
-    );
-  }
-}
+  return (
+    <ModalWrapper
+      title={loggingIn ? 'Logging In' : 'Log In'}
+      primaryButtonText="Log In"
+      showClose={showClose}
+    >
+      {loggingIn ? (
+        <LoadingContainer>
+          <Loading />
+        </LoadingContainer>
+      ) : (
+        <Form onSubmit={onSubmit}>
+          <InputRow>
+            <Label htmlFor="email">Email Address</Label>
+            <Input
+              type="text"
+              id="email"
+              placeholder="name@email.com"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </InputRow>
+          <InputRow>
+            <Label htmlFor="password">Password</Label>
+            <Input
+              type="password"
+              id="password"
+              placeholder="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </InputRow>
+          <ButtonContainer>
+            <PrimaryButton text="Log In" />
+          </ButtonContainer>
+        </Form>
+      )}
+    </ModalWrapper>
+  );
+};
 
 Login.propTypes = {
   history: propTypes.object.isRequired,

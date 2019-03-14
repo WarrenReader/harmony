@@ -30,6 +30,7 @@ const AddToDoText = styled.span`
 `;
 
 const Container = styled.div`
+  background: white;
   display: flex;
   flex-direction: column;
   height: 100%;

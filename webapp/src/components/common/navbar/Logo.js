@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import HarmonyLogo from '../../../assets/logo_small.png';
 
 const StyledLogo = styled.img`
-  height: 70px;
-  width: 70px;
+  height: 65px;
+  padding-top: 2px;
+  width: 65px;
 `;
 
 const Logo = () => {

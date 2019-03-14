@@ -7,10 +7,17 @@ import { getToDos } from '../actions/toDos';
 import ToDoListContainer from '../components/dashboard/sidebar/ToDoListContainer';
 import ToDoContainer from '../components/dashboard/main/ToDoContainer';
 
-const Container = styled.div`
+const OuterContainer = styled.div`
   display: flex;
+  background: #f9f9f9;
   height: calc(100% - 77px);
+  justify-content: center;
   min-height: 600px;
+`;
+
+const InnerContainer = styled.div`
+  display: flex;
+  width: 1100px;
 `;
 
 const SideBar = styled.div`
@@ -21,6 +28,7 @@ const SideBar = styled.div`
 `;
 
 const Main = styled.div`
+  background: white;
   padding: 35px;
   width: 100%;
 `;
@@ -32,14 +40,16 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <Container>
-        <SideBar>
-          <ToDoListContainer />
-        </SideBar>
-        <Main>
-          <ToDoContainer />
-        </Main>
-      </Container>
+      <OuterContainer>
+        <InnerContainer>
+          <SideBar>
+            <ToDoListContainer />
+          </SideBar>
+          <Main>
+            <ToDoContainer />
+          </Main>
+        </InnerContainer>
+      </OuterContainer>
     );
   }
 }

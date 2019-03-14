@@ -10,7 +10,7 @@ const StyledNavBar = styled.nav`
   align-items: center;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   display: flex;
-  height: 75px;
+  height: 70px;
   justify-content: space-between;
   padding: 0px 40px;
 `;

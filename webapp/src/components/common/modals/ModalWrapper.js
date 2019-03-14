@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { displayModal } from '../../../actions/modals';
-import close from '../../../assets/close.png';
+import Close from '../../../assets/Close';
 
 const Background = styled.div`
   background: #000000;
@@ -13,16 +13,6 @@ const Background = styled.div`
   position: fixed;
   width: 100%;
   z-index: 5;
-`;
-
-const Close = styled.img`
-  cursor: pointer;
-  height: 18px;
-  position: absolute;
-  right: 20px;
-  opacity: 0.6;
-  width: 18px;
-  top: 23px;
 `;
 
 const Container = styled.div`
@@ -38,7 +28,7 @@ const ModalBox = styled.div`
   background: white;
   border-radius: 4px;
   display: block;
-  max-height: 400px
+  max-height: 500px
   margin-top: 150px;
   padding: 20px;
   position: relative;
@@ -82,9 +72,7 @@ class ModalWrapper extends React.Component {
       <Container>
         <Background />
         <ModalBox ref={node => (this.modal = node)}>
-          {showClose && (
-            <Close src={close} onClick={() => displayModal(null)} />
-          )}
+          {showClose && <Close onClick={() => displayModal(null)} />}
           <Title>{title}</Title>
           <ModalBody>{children}</ModalBody>
         </ModalBox>

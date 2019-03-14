@@ -8,6 +8,7 @@ import {
   deleteTask
 } from '../../../actions/toDos';
 import Checkmark from '../../../assets/Checkmark';
+import Close from '../../../assets/Close';
 
 const Container = styled.div`
   align-items: center;
@@ -23,40 +24,6 @@ const CheckMarkContainer = styled.div`
   cursor: pointer;
   margin-left: 15px;
   width: 30px;
-`;
-
-const Close = styled.span`
-  cursor: pointer;
-  height: 26px;
-  position: absolute;
-  right: 15px;
-  width: 26px;
-
-  &:after {
-    content: '';
-    height: 26px;
-    border-left: 2px solid #383838;
-    position: absolute;
-    transform: rotate(45deg);
-    left: 12px;
-  }
-
-  &:hover:after {
-    border-left: 2px solid #ff0000;
-  }
-
-  &:before {
-    content: '';
-    height: 26px;
-    border-left: 2px solid #383838;
-    position: absolute;
-    transform: rotate(-45deg);
-    left: 12px;
-  }
-
-  &:hover:before {
-    border-left: 2px solid #ff0000;
-  }
 `;
 
 const Description = styled.input.attrs({ type: 'text' })`
