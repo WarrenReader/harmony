@@ -2,8 +2,6 @@
 
 **Link To Live Site:** https://harmony-to-do-app.netlify.com/
 
-**Link To Repo:** https://github.com/WarrenReader/harmony
-
 ## Summary
 
 Harmony is a to-do app. It features the following:
