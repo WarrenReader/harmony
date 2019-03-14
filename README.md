@@ -9,6 +9,7 @@ Harmony is a to-do app. It features the following:
 - Redux with thunks throughout the project.
 - React Hooks (useState) in Login.js modal component
 - Class state management in NewList.js modal component
+- React Suspense for code splitting
 - Webpack for bundle management
 - Husky with prettier, eslint, and jest pre-commit checks
 - React-Router-Dom for routing
