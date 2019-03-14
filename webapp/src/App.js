@@ -6,8 +6,9 @@ import styled from 'styled-components';
 import store from './store';
 import ModalConductor from './components/common/modals/ModalConductor';
 import NavBar from './components/common/navbar/NavBar';
-import Dashboard from './containers/Dashboard';
+const Dashboard = React.lazy(() => import('./containers/Dashboard'));
 import Home from './containers/Home';
+import LoadingPage from './components/common/LoadingPage';
 
 const AppContainer = styled.div`
   height: 100%;
@@ -23,8 +24,15 @@ const App = () => {
           <NavBar />
           <Switch>
             <Route exact path="/" component={() => <Home />} />
-            <Route exact path="/dashboard" component={() => <Dashboard />} />
-            <Route exact path="/settings" component={() => <h1>Settings</h1>} />
+            <Route
+              exact
+              path="/dashboard"
+              component={() => (
+                <React.Suspense fallback={<LoadingPage />}>
+                  <Dashboard />
+                </React.Suspense>
+              )}
+            />
           </Switch>
         </AppContainer>
       </Router>
